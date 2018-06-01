@@ -20,7 +20,7 @@ public class Employee implements Serializable
     private String surname;
     @Column(name = "Country")
     private String country;
-    @Column(name = "BirthDate")
+    @Column(name = "birthdate")
     private String birthDate;
 
     public Employee()

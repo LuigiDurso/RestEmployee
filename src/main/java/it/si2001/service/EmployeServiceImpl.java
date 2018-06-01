@@ -31,14 +31,9 @@ public class EmployeServiceImpl implements EmployeeService
         employeeRepository.save(employee);
     }
 
-    public void updateEmployee(Employee employee)
-    {
-
-    }
-
     public void deleteEmployeeById(int id)
     {
-
+        this.employeeRepository.delete(this.findById(id));
     }
 
     public List<Employee> findAllEmployees()

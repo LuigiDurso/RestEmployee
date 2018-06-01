@@ -23,12 +23,12 @@ public class EmployeServiceImpl implements EmployeeService
 
     public Employee findById(int id)
     {
-        return null;
+        return employeeRepository.findEmployeeById(id);
     }
 
     public void saveEmployee(Employee employee)
     {
-
+        employeeRepository.save(employee);
     }
 
     public void updateEmployee(Employee employee)

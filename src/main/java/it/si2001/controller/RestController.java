@@ -73,7 +73,7 @@ public class RestController
             return new ResponseEntity<Void>(HttpStatus.NOT_FOUND);
         }
 
-        employeeService.deleteEmployeeById(id);
+        employeeService.deleteEmployee(employee);
         return new ResponseEntity<Void>(HttpStatus.OK);
     }
 }

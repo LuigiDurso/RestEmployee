@@ -2,8 +2,10 @@ package it.si2001.controller;
 
 
 import it.si2001.model.Employee;
+import it.si2001.model.Skill;
 import it.si2001.repository.EmployeeRepository;
 import it.si2001.service.EmployeeService;
+import it.si2001.service.SkillService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,10 +22,13 @@ public class RestController
 {
     final
     EmployeeService employeeService;
+    final
+    SkillService skillService;
 
     @Autowired
-    public RestController(EmployeeService employeeService) {
+    public RestController(EmployeeService employeeService, SkillService skillService) {
         this.employeeService = employeeService;
+        this.skillService = skillService;
     }
 
     //-------------------Retrieve All Employees--------------------------------------------------------
@@ -36,6 +41,18 @@ public class RestController
             return new ResponseEntity<List<Employee>>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<Employee>>(employees, HttpStatus.OK);
+    }
+
+    //-------------------Retrieve All Skills--------------------------------------------------------
+
+    @RequestMapping(value = "/skills", method = RequestMethod.GET)
+    public ResponseEntity<List<Skill>> listAllSkills() {
+
+        List<Skill> skills = (List<Skill>) skillService.findAllSkills();
+        if(skills.isEmpty()){
+            return new ResponseEntity<List<Skill>>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<List<Skill>>(skills, HttpStatus.OK);
     }
 
     //-------------------Retrieve Single User--------------------------------------------------------

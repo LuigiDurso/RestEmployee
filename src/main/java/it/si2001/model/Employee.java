@@ -2,6 +2,7 @@ package it.si2001.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * Model che rappresenta degli impiegati
@@ -20,8 +21,15 @@ public class Employee implements Serializable
     private String surname;
     @Column(name = "Country")
     private String country;
-    @Column(name = "BirthDate")
+    @Column(name = "birthdate")
     private String birthDate;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "Employee_Skills",
+            joinColumns = { @JoinColumn(name = "idemployee") },
+            inverseJoinColumns = { @JoinColumn(name = "idSkills") }
+    )
+    private List<Skill> skillList;
 
     public Employee()
     {
@@ -35,11 +43,11 @@ public class Employee implements Serializable
         this.country = country;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -75,4 +83,11 @@ public class Employee implements Serializable
         this.birthDate = birthDate;
     }
 
+    public List<Skill> getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(List<Skill> skillList) {
+        this.skillList = skillList;
+    }
 }

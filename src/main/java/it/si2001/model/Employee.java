@@ -1,11 +1,8 @@
 package it.si2001.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Model che rappresenta degli impiegati
@@ -32,7 +29,7 @@ public class Employee implements Serializable
             joinColumns = { @JoinColumn(name = "idemployee") },
             inverseJoinColumns = { @JoinColumn(name = "idSkills") }
     )
-    private Set<Skill> skillList;
+    private List<Skill> skillList;
 
     public Employee()
     {
@@ -86,11 +83,11 @@ public class Employee implements Serializable
         this.birthDate = birthDate;
     }
 
-    public Set<Skill> getSkillList() {
+    public List<Skill> getSkillList() {
         return skillList;
     }
 
-    public void setSkillList(Set<Skill> skillList) {
+    public void setSkillList(List<Skill> skillList) {
         this.skillList = skillList;
     }
 }

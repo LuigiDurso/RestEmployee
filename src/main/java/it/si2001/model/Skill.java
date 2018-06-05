@@ -1,6 +1,7 @@
 package it.si2001.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -18,7 +19,7 @@ public class Skill implements Serializable
     @Column(name = "SKILL" , length=15, unique=true, nullable=false)
     private String skill;
     @ManyToMany(mappedBy = "skillList")
-    @JsonBackReference
+    @JsonIgnore
     List<Employee> employees;
 
     public Skill()
